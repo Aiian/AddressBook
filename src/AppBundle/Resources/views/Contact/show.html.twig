@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+
+{% block menu %}
+    {{ include ('AppBundle:Components:menu.html.twig') }}
+{% endblock %}
+{% block body %}
+    {{ include ('AppBundle:Contact:single.html.twig', {'contact':contact}) }}
+    {% for address in contact.addresses %}
+        <h3>Address {{ loop.index }}:</h3>
+        {{ include ('AppBundle:Components:address.html.twig', {'contact':contact}) }}
+    {% else %}
+        <p><em>No addresses</em></p>
+    {% endfor %}
+    {% for phone in contact.phones %}
+        <h3>Phone {{ loop.index }}:</h3>
+        {{ include ('AppBundle:Components:phone.html.twig', {'contact':contact}) }}
+    {% else %}
+        <p><em>No phones</em></p>
+    {% endfor %}
+    {% for email in contact.emails %}
+        <h3>E-mail {{ loop.index }}:</h3>
+        {{ include ('AppBundle:Components:email.html.twig', {'contact':contact}) }}
+    {% else %}
+        <p><em>No e-mails</em></p>
+    {% endfor %}
+
+    <a href="{{ path('app_contact_modify', {'id':contact.id}) }}">MODIFY</a>
+    <a href="{{ path('app_contact_delete', {'id':contact.id}) }}">DELETE</a>
+
+{% endblock %}

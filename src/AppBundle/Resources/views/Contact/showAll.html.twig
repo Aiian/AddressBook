@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block menu %}
+{{ include ('AppBundle:Components:menu.html.twig') }}
+{% endblock %}
+{% block body %}
+    <h1>Contact book</h1>
+    {% for contact in contacts %}
+        <a href="{{ path('app_contact_show', {'id':contact.id}) }}">{{ include ('AppBundle:Contact:single.html.twig', {'contact':contact}) }}</a>
+    {% endfor %}
+{% endblock %}

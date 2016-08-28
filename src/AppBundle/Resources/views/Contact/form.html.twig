@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+{% block menu %}
+    {{ include ('AppBundle:Components:menu.html.twig') }}
+{% endblock %}
+{% block body %}
+    {{ form(form) }}
+    <p><a href="{{ path('app_address_add', {'id':contact.id}) }}">ADD ADDRESS</a></p>
+    {% for address in contact.addresses %}
+        <h3>Address {{ loop.index }}:</h3>
+        {{ include ('AppBundle:Components:address.html.twig', {'contact':contact}) }}
+        <a href="{{ path('app_address_modify', {'id':contact.id, 'a_id':address.id}) }}">MODIFY</a>
+        <a href="{{ path('app_address_delete', {'id':contact.id, 'a_id':address.id}) }}">DELETE</a>
+    {% endfor %}
+    <p><a href="{{ path('app_phone_add', {'id':contact.id}) }}">ADD PHONE</a></p>
+    {% for phone in contact.phones %}
+        <h3>Phone {{ loop.index }}:</h3>
+        {{ include ('AppBundle:Components:phone.html.twig', {'contact':contact}) }}
+        <a href="{{ path('app_phone_modify', {'id':contact.id, 'p_id':phone.id}) }}">MODIFY</a>
+        <a href="{{ path('app_phone_delete', {'id':contact.id, 'p_id':phone.id}) }}">DELETE</a>
+    {% endfor %}
+    <p><a href="{{ path('app_email_add', {'id':contact.id}) }}">ADD E-MAIL</a></p>
+    {% for email in contact.emails %}
+        <h3>E-mail {{ loop.index }}:</h3>
+        {{ include ('AppBundle:Components:email.html.twig', {'contact':contact}) }}
+        <a href="{{ path('app_email_modify', {'id':contact.id, 'e_id':email.id}) }}">MODIFY</a>
+        <a href="{{ path('app_email_delete', {'id':contact.id, 'e_id':email.id}) }}">DELETE</a>
+    {% endfor %}
+{% endblock %}

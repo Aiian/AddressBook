@@ -1,0 +1,7 @@
+{% extends '::base.html.twig' %}
+{% block menu %}
+    {{ include ('AppBundle:Components:menu.html.twig') }}
+{% endblock %}
+{% block body %}
+    {{ form(form) }}
+{% endblock %}
